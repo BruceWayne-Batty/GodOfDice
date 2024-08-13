@@ -78,4 +78,5 @@ public class TypeWriterEffect : MonoBehaviour
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0));
         storyText.enabled = false;
     }
+
 }

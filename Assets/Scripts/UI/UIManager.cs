@@ -14,14 +14,18 @@ public class UIManager : MonoBehaviour
 {
 
 
+    //Controlling Components
     public TypeWriterEffect typeWriter;
+
+    //UI Components
+    public GameObject BackgroundStory;
+
     private SceneState currentState;
 
 
     void Start()
     {
-        currentState = SceneState.BackgroundStory;
-        typeWriter.StartTyping();
+        TransitionToState(SceneState.BackgroundStory);
     }
 
     // Update is called once per frame
@@ -36,9 +40,16 @@ public class UIManager : MonoBehaviour
         currentState = newState;
         Debug.Log("Transitioning to state: " + newState);
 
-
         // Handle state-specific logic here
-        //To Do
+
+        //Transition to story
+        if (currentState == SceneState.BackgroundStory)
+        {
+            BackgroundStory.SetActive(true);
+            typeWriter.StartTyping();
+        }
+
+
     }
 
 }
