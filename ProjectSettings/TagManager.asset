@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Spire
+    uniqueID: 4120524795
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

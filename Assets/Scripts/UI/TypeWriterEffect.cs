@@ -31,14 +31,13 @@ public class TypeWriterEffect : MonoBehaviour
 
     public void Start()
     {
-        //load the text
-        lines = textAsset.text.Split(new[] { "\r\n", "\r", "\n" }, System.StringSplitOptions.None);
     }
 
 
     public void StartTyping()
     {
         // Start the typewriter effect
+        lines = textAsset.text.Split(new[] { "\r\n", "\r", "\n" }, System.StringSplitOptions.None);
         StartCoroutine(TypeStory());
     }
 
@@ -74,9 +73,10 @@ public class TypeWriterEffect : MonoBehaviour
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0));
         }
 
-        uiManager.TransitionToState(SceneState.GameStart);
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0));
-        storyText.enabled = false;
+
+        //change the scene state to "Select Gear"
+        uiManager.TransitionToState(SceneState.SelectGear);
     }
 
 }

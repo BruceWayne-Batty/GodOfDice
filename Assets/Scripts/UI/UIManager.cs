@@ -5,7 +5,7 @@ using UnityEngine;
 public enum SceneState
 {
     BackgroundStory,
-    GameStart,
+    SelectGear,
 
 }
 
@@ -17,9 +17,16 @@ public class UIManager : MonoBehaviour
     //Controlling Components
     public TypeWriterEffect typeWriter;
 
-    //UI Components
+    //UI Components-Panel
     public GameObject BackgroundStory;
+    public GameObject SelectionPanel;
 
+
+    //UI Components-Message
+    public GameObject MessagePanel_Bottom;
+
+
+    //Use scene state to decide the state of corresponding UI component
     private SceneState currentState;
 
 
@@ -43,11 +50,27 @@ public class UIManager : MonoBehaviour
         // Handle state-specific logic here
 
         //Transition to story
-        if (currentState == SceneState.BackgroundStory)
+        switch (currentState)
         {
-            BackgroundStory.SetActive(true);
-            typeWriter.StartTyping();
+            case(SceneState.BackgroundStory):
+                BackgroundStory.SetActive(true);
+                BackgroundStory.GetComponent<TextController>().StartTyping();
+                break;
+
+            case (SceneState.SelectGear):
+                BackgroundStory.SetActive(false);
+                SelectionPanel.SetActive(true);
+                MessagePanel_Bottom.SetActive(true);
+                break;
+
+
+            default:
+                Debug.Log("Unknown Scene State");
+                break;
+
         }
+
+        
 
 
     }
