@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ddac8bdb21494517b9c4d0fc5bcab0e, type: 3}
   m_Name: The Weapon
   m_EditorClassIdentifier: 
-  ID: 0
+  ID: 2
   gearName: TheWeapon
   RareLevel: 0
   gearCategory: 0

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: The HiddenOne
   m_EditorClassIdentifier: 
   ID: 0
-  gearName: 
+  gearName: The HiddenOne
   RareLevel: 0
-  gearCategory: 0
-  DamageRate: 0
-  ShieldRate: 0
-  Description: 
+  gearCategory: 2
+  DamageRate: 1000
+  ShieldRate: 1000
+  Description: '"The Hidden One", no one knows where it comes from'

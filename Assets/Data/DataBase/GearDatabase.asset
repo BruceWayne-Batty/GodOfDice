@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07eff409ac80d4eb9b55c80717d1fcca, type: 3}
   m_Name: GearDatabase
   m_EditorClassIdentifier: 
-  allGears: []
+  allGears:
+  - {fileID: 11400000, guid: 101a17068ae3241b8b03d5d0ccca9f63, type: 2}
+  - {fileID: 11400000, guid: ccadea1f3238a4d6f87633bae0b5b1ae, type: 2}
+  - {fileID: 11400000, guid: 0fce93d2c9ee34b53ae549ce871f24b4, type: 2}
