@@ -18,7 +18,7 @@ public class UIManager : MonoBehaviour
     public TypeWriterEffect typeWriter;
 
     //UI Components-Panel
-    public GameObject BackgroundStory;
+    public GameObject BackgroundStorySet;
     public GameObject SelectionPanel;
 
 
@@ -42,6 +42,11 @@ public class UIManager : MonoBehaviour
     }
 
 
+    public void SkipStory()
+    {
+        TransitionToState(SceneState.SelectGear);
+    }
+
     public void TransitionToState(SceneState newState)
     {
         currentState = newState;
@@ -53,12 +58,12 @@ public class UIManager : MonoBehaviour
         switch (currentState)
         {
             case(SceneState.BackgroundStory):
-                BackgroundStory.SetActive(true);
-                BackgroundStory.GetComponent<TextController>().StartTyping();
+                BackgroundStorySet.SetActive(true);
+                BackgroundStorySet.GetComponentInChildren<TextController>().StartTyping();
                 break;
 
             case (SceneState.SelectGear):
-                BackgroundStory.SetActive(false);
+                BackgroundStorySet.SetActive(false);
                 SelectionPanel.SetActive(true);
                 MessagePanel_Bottom.SetActive(true);
                 break;
