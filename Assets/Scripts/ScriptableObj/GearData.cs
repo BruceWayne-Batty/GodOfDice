@@ -7,8 +7,8 @@ public enum GearCategory
     Special,
 }
 
-[CreateAssetMenu(fileName = "NewGear", menuName = "Gear")]
-public class Gear : ScriptableObject
+[CreateAssetMenu(fileName = "NewGearData", menuName = "Gear/GearData")]
+public class GearData : ScriptableObject
 {
     public int ID;
     public string gearName; // Name of the gear
