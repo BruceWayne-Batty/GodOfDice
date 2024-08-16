@@ -15,11 +15,11 @@ public class UIManager : MonoBehaviour
 
 
     //Controlling Components
-    public TypeWriterEffect typeWriter;
+    public SelectionController selectionController;
 
     //UI Components-Panel
     public GameObject BackgroundStorySet;
-    public GameObject SelectionPanel;
+    public GameObject SelectionSet;
 
 
     //UI Components-Message
@@ -64,7 +64,8 @@ public class UIManager : MonoBehaviour
 
             case (SceneState.SelectGear):
                 BackgroundStorySet.SetActive(false);
-                SelectionPanel.SetActive(true);
+                SelectionSet.SetActive(true);
+                selectionController.StartGameSelection();
                 MessagePanel_Bottom.SetActive(true);
                 break;
 
