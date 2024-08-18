@@ -1,12 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
-public class GearShowcase : MonoBehaviour
+public class GearShowcase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     public int gearID; // The ID of the gear to display
+    
+    
+    //The GearData to show of this gearCard
     public GearData gearData;
 
+    //Gear Manager
+    public GearManager gearManager;
 
 
     //Component of the panel
@@ -15,10 +21,26 @@ public class GearShowcase : MonoBehaviour
     public TextMeshProUGUI gearInfo;     // Description of the gear
 
 
-    public GearDatabase gearDatabase;    // GearDatabase of the game
+    //public GearDatabase gearDatabase;    // GearDatabase of the game
     public string imagesFolderPath = "Assets/Images/GearImages/"; // Path to the folder where images are stored
 
 
+    //For controlling the Hoving effect
+    public Vector3 hoverOffset = new Vector3(0, 10, 0); // The amount to move the card up when hovered
+    public float hoverDuration = 0.2f;                  // Duration of the floating animation
+    private Vector3 originalPosition;                   // Store the original position of the card
+
+
+
+    void Start()
+    {
+        // Store the original position of the card
+        originalPosition = transform.localPosition;
+
+
+        // Get the gearManager
+        gearManager = FindObjectOfType<GearManager>();
+    }
 
     public void AssignGear(GearData PickedGear)
     {
@@ -27,14 +49,15 @@ public class GearShowcase : MonoBehaviour
 
     public void DisplayGear(GearData gearToShow)
     {
-        // Assign Gear ID
-        gearID = gearToShow.ID;
-        Debug.Log(gearToShow.ID + gearToShow.Description);
-        if (gearToShow != null)
+        // Assign GearData
+        AssignGear(gearToShow);
+        gearID = gearData.ID;
+        Debug.Log(gearData.ID + gearData.Description);
+        if (gearData != null)
         {
             // Update the gear name
-            gearNameText.text = gearToShow.gearName;
-            gearInfo.text = gearToShow.Description;
+            gearNameText.text = gearData.gearName;
+            gearInfo.text = gearData.Description;
 
             // Load and update the gear image
             string imagePath = $"{imagesFolderPath}{gearID}.png";
@@ -53,6 +76,32 @@ public class GearShowcase : MonoBehaviour
             Debug.LogError($"Gear with ID {gearID} not found in the database.");
         }
     }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        //Debug.Log("Pointer Entered");
+
+        // Move the card up when the mouse hovers over it
+        LeanTween.moveLocal(gameObject, originalPosition + hoverOffset, hoverDuration).setEaseInOutQuad();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        // Move the card back to its original position when the mouse leaves
+        LeanTween.moveLocal(gameObject, originalPosition, hoverDuration).setEaseInOutQuad();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        // Call the AddGear method from the gearManager when the card is clicked
+        if (gearManager != null)
+        {
+            gearManager.AddGear(gearData);
+        }
+    }
+
+
+
 
     private Sprite LoadSprite(string path)
     {
