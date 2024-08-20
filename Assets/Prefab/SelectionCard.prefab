@@ -437,10 +437,12 @@ MonoBehaviour:
   gearID: 0
   gearData: {fileID: 0}
   gearManager: {fileID: 0}
+  uiManager: {fileID: 0}
   gearImage: {fileID: 5688920817272049084}
   gearNameText: {fileID: 1209504436517863367}
   gearInfo: {fileID: 3279518919606537251}
   imagesFolderPath: Assets/Images/GearImages/
+  isFirstSelction: 0
   hoverOffset: {x: 0, y: 20, z: 0}
   hoverDuration: 0.2
 --- !u!1 &8001396899337876229

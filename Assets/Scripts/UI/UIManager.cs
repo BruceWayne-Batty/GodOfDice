@@ -6,7 +6,7 @@ public enum SceneState
 {
     BackgroundStory,
     SelectGear,
-
+    MainGame,
 }
 
 
@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour
     //UI Components-Panel
     public GameObject BackgroundStorySet;
     public GameObject SelectionSet;
-
+    public GameObject MainBoardSet;
 
     //UI Components-Message
     public GameObject MessagePanel_Bottom;
@@ -69,7 +69,13 @@ public class UIManager : MonoBehaviour
                 MessagePanel_Bottom.SetActive(true);
                 break;
 
+            case(SceneState.MainGame):
+                SelectionSet.SetActive(false);
+                MessagePanel_Bottom.SetActive(false);
+                MainBoardSet.SetActive(true);
+                break;
 
+            
             default:
                 Debug.Log("Unknown Scene State");
                 break;

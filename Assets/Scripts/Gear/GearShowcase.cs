@@ -11,8 +11,9 @@ public class GearShowcase : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     //The GearData to show of this gearCard
     public GearData gearData;
 
-    //Gear Manager
+    //Controllers and Manager
     public GearManager gearManager;
+    public UIManager uiManager;
 
 
     //Component of the panel
@@ -23,6 +24,10 @@ public class GearShowcase : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     //public GearDatabase gearDatabase;    // GearDatabase of the game
     public string imagesFolderPath = "Assets/Images/GearImages/"; // Path to the folder where images are stored
+
+
+    //Set to ture is in the first selection scene
+    public bool isFirstSelction;
 
 
     //For controlling the Hoving effect
@@ -40,6 +45,7 @@ public class GearShowcase : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
         // Get the gearManager
         gearManager = FindObjectOfType<GearManager>();
+        uiManager = FindObjectOfType<UIManager>();
     }
 
     public void AssignGear(GearData PickedGear)
@@ -97,6 +103,10 @@ public class GearShowcase : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (gearManager != null)
         {
             gearManager.AddGear(gearData);
+        }
+        if (isFirstSelction)
+        {
+            uiManager.TransitionToState(SceneState.MainGame);
         }
     }
 

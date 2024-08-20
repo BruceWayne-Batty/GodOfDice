@@ -33,6 +33,8 @@ public class GearDatabase : ScriptableObject
         return selectedGears;
     }
 
+
+
     public List<int> PickGearID(int RareLevel, int numOfDesiredGear)
     {
         // Find all gears that match the given RareLevel

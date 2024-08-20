@@ -19,13 +19,13 @@ public class SelectionController : MonoBehaviour
     public void StartGameSelection()
     {
         title.text = "Starting Gear";
-        PopulatePanel(gearDatabase.PickGear(0,3));
+        PopulatePanel(gearDatabase.PickGear(0,3),true);
 
 
 
     }
 
-    public void PopulatePanel(List<GearData> pickedGearData)
+    public void PopulatePanel(List<GearData> pickedGearData, bool FirstSelection = false)
     {
         // Clear existing gear cards
         foreach (Transform child in panelTransform)
@@ -67,6 +67,10 @@ public class SelectionController : MonoBehaviour
                 GearShowcase gearShowcase = gearCard.GetComponent<GearShowcase>();
                 if (gearShowcase != null)
                 {
+                    if (FirstSelection)
+                    {
+                        gearShowcase.isFirstSelction = true;
+                    }
                     gearShowcase.DisplayGear(gearData);
                 }
             }
