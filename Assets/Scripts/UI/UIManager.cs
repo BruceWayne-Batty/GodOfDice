@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
 
     //Controlling Components
     public SelectionController selectionController;
+    public GearPanelController gearPanelController;
 
     //UI Components-Panel
     public GameObject BackgroundStorySet;
@@ -54,7 +55,7 @@ public class UIManager : MonoBehaviour
 
         // Handle state-specific logic here
 
-        //Transition to story
+        //Transition to SceneState
         switch (currentState)
         {
             case(SceneState.BackgroundStory):
@@ -73,6 +74,7 @@ public class UIManager : MonoBehaviour
                 SelectionSet.SetActive(false);
                 MessagePanel_Bottom.SetActive(false);
                 MainBoardSet.SetActive(true);
+                gearPanelController.InitialPanel();
                 break;
 
             
@@ -87,4 +89,31 @@ public class UIManager : MonoBehaviour
 
     }
 
+
+    /***Functions To Load Image***/
+    public static Sprite LoadSprite(string path)
+    {
+        // Load the texture from the path
+        Texture2D texture = LoadTexture(path);
+        if (texture == null) return null;
+
+        // Create a sprite from the texture
+        return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+    }
+
+    public static Texture2D LoadTexture(string filePath)
+    {
+        // Load image file data into a byte array
+        byte[] fileData;
+        if (System.IO.File.Exists(filePath))
+        {
+            fileData = System.IO.File.ReadAllBytes(filePath);
+            Texture2D tex = new Texture2D(2, 2);
+            if (tex.LoadImage(fileData))
+            {
+                return tex;
+            }
+        }
+        return null;
+    }
 }
