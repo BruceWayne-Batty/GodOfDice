@@ -67,7 +67,7 @@ public class GearShowcase : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
             // Load and update the gear image
             string imagePath = $"{imagesFolderPath}{gearID}.png";
-            Sprite gearSprite = LoadSprite(imagePath);
+            Sprite gearSprite = UIManager.LoadSprite(imagePath);
             if (gearSprite != null)
             {
                 gearImage.sprite = gearSprite;
@@ -108,34 +108,5 @@ public class GearShowcase : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         {
             uiManager.TransitionToState(SceneState.MainGame);
         }
-    }
-
-
-
-
-    private Sprite LoadSprite(string path)
-    {
-        // Load the texture from the path
-        Texture2D texture = LoadTexture(path);
-        if (texture == null) return null;
-
-        // Create a sprite from the texture
-        return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
-    }
-
-    private Texture2D LoadTexture(string filePath)
-    {
-        // Load image file data into a byte array
-        byte[] fileData;
-        if (System.IO.File.Exists(filePath))
-        {
-            fileData = System.IO.File.ReadAllBytes(filePath);
-            Texture2D tex = new Texture2D(2, 2);
-            if (tex.LoadImage(fileData))
-            {
-                return tex;
-            }
-        }
-        return null;
     }
 }

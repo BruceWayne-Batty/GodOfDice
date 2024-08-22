@@ -15,6 +15,8 @@ MonoBehaviour:
   ID: 2
   gearName: TheWeapon
   RareLevel: 0
+  ActionCost: 1
+  EnergySlots: 3
   gearCategory: 0
   DamageRate: 1000
   ShieldRate: 0

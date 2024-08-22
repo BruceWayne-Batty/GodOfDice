@@ -13,16 +13,28 @@ public class GearPanelController : MonoBehaviour
     public TextMeshProUGUI gearName;
     public TextMeshProUGUI gearDescription;
 
-    //Controller Of Dice On the Panel
-    public DiceController actionCost;
+    public GameObject energySlotsPrefab;
+
+    //Panel Info
+    public RectTransform panelTransform;
+
+    //Controller Of ActionDice On the Panel
+    public DiceController actionCostDice;
 
     public Image gearImage;
 
     //Gear Data 
     public GearManager gearManager;
     private GearDataInGame gearToShow;
+
+    private float atkRate;
+    private float defRate;
+    private int energySlotsCount;
+    private int actionCost;
     private int deckCount = 0;
     private int currentIndex = 0;
+    private int currentID; //Store the Current ID 
+
 
     //Preset Data
     public string imagesFolderPath = "Assets/Images/GearImages/"; // Path to the folder where images are stored
@@ -31,8 +43,7 @@ public class GearPanelController : MonoBehaviour
     // Start is called before the first frame update
     public void InitialPanel()
     {
-        gearToShow = gearManager.gearsDeck[currentIndex];
-        deckCount = 1;
+        UpdateGear();
         ShowData();
     }
 
@@ -41,12 +52,17 @@ public class GearPanelController : MonoBehaviour
     /***Function to show gearData on Panel***/
     private void ShowData()
     {
+        //Show GearInfo
         gearName.text = gearToShow.gearName;
-        atkText.text = "x" + gearToShow.DamageRate.ToString();
-        defText.text = "x" + gearToShow.ShieldRate.ToString();
+        atkText.text = "x" + atkRate.ToString();
+        defText.text = "x" + defRate.ToString();
         gearDescription.text = gearToShow.Description;
-        string imagePath = $"{imagesFolderPath}{gearToShow.ID}.png";
-        Sprite gearSprite = LoadSprite(imagePath);
+
+        //Load GearImage
+        string imagePath = $"{imagesFolderPath}{currentID}.png";
+        Sprite gearSprite = UIManager.LoadSprite(imagePath);
+
+        //Show GearImage
         if (gearSprite != null)
         {
             gearImage.sprite = gearSprite;
@@ -55,35 +71,29 @@ public class GearPanelController : MonoBehaviour
         {
             Debug.Log("GearImage Missing");
         }
-        actionCost.InitialDice(4,4);
 
-    }
 
-    /***Functions To Load Image***/
-    private Sprite LoadSprite(string path)
-    {
-        // Load the texture from the path
-        Texture2D texture = LoadTexture(path);
-        if (texture == null) return null;
+        //Show CostDice
+        actionCostDice.InitialDice(4, actionCost); //use dice to show the action cost, so dicecontroller is called here
 
-        // Create a sprite from the texture
-        return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
-    }
-
-    private Texture2D LoadTexture(string filePath)
-    {
-        // Load image file data into a byte array
-        byte[] fileData;
-        if (System.IO.File.Exists(filePath))
+        //Instantiate Energy Slots
+        for (int i = 0; i < energySlotsCount; i++)
         {
-            fileData = System.IO.File.ReadAllBytes(filePath);
-            Texture2D tex = new Texture2D(2, 2);
-            if (tex.LoadImage(fileData))
-            {
-                return tex;
-            }
+            GameObject gearCard = Instantiate(energySlotsPrefab, panelTransform);
         }
-        return null;
+
     }
+
+    private void UpdateGear()
+    {
+        gearToShow = gearManager.gearsDeck[currentIndex];
+        atkRate = gearToShow.DamageRate;
+        defRate = gearToShow.ShieldRate;
+        energySlotsCount = gearToShow.EnergySlots;
+        actionCost = gearToShow.ActionCost;
+        deckCount = gearManager.GetDeckSize();
+        currentID = gearToShow.ID;
+    }
+
 
 }

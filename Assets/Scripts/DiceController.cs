@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class DiceController : MonoBehaviour
+public class DiceController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+
+    //Dice UI Data
+    private RectTransform rectTransform;
+    private CanvasGroup canvasGroup;
 
     //Store Dice Data. For Normal Faces, using corresponding faces. For Unnormal Faces, use int number greater than 20 to represent
     private int[] diceFaces;
@@ -16,6 +21,37 @@ public class DiceController : MonoBehaviour
     //Components To Control
     public Image diceBack;
     public Image diceFace;
+
+    void Awake()
+    {
+        rectTransform = GetComponent<RectTransform>();
+        canvasGroup = GetComponent<CanvasGroup>();
+    }
+
+    /***Drag Functions***/
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        canvasGroup.alpha = 0.6f; // Make the block semi-transparent during drag
+        canvasGroup.blocksRaycasts = false; // Allow the block to pass through other UI elements
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        rectTransform.anchoredPosition += eventData.delta / GetCanvasScaleFactor();
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        canvasGroup.alpha = 1.0f;
+        canvasGroup.blocksRaycasts = true;
+    }
+
+    private float GetCanvasScaleFactor()
+    {
+        Canvas canvas = GetComponentInParent<Canvas>();
+        return canvas.scaleFactor;
+    }
+
 
     // Start is called before the first frame update
     public void InitialDice(int totalFaces, int initialShow)

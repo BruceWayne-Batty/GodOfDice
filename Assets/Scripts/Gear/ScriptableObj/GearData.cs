@@ -13,6 +13,8 @@ public class GearData : ScriptableObject
     public int ID;
     public string gearName; // Name of the gear
     public int RareLevel; // Rarity level of the gear
+    public int ActionCost; //Action Cost of the gear
+    public int EnergySlots; //Number of Energy Slots of the gear
     public GearCategory gearCategory; // Category (Weapon or Shield)
     public float DamageRate; // Damage rate (for weapons)
     public float ShieldRate; // Shield rate (for shields)
@@ -29,6 +31,8 @@ public class GearDataInGame
     public int ID;
     public string gearName;
     public int RareLevel;
+    public int ActionCost; 
+    public int EnergySlots; 
     public GearCategory gearCategory;
     public float DamageRate;
     public float ShieldRate;
@@ -40,6 +44,8 @@ public class GearDataInGame
         ID = gearData.ID;
         gearName = gearData.gearName;
         RareLevel = gearData.RareLevel;
+        ActionCost = gearData.ActionCost;
+        EnergySlots = gearData.EnergySlots;
         gearCategory = gearData.gearCategory;
         DamageRate = gearData.DamageRate;
         ShieldRate = gearData.ShieldRate;
