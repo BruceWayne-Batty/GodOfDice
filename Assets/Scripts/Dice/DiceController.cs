@@ -53,7 +53,7 @@ public class DiceController : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     }
 
 
-    // Start is called before the first frame update
+    // To Initial Dice Manually
     public void InitialDice(int totalFaces, int initialShow)
     {
         faceCount = totalFaces;
