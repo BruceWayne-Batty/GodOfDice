@@ -44,7 +44,7 @@ public class GearPanelController : MonoBehaviour
 
 
     // Start is called before the first frame update
-    public void InitialPanel()
+    public void UpdatePanel()
     {
         UpdateGear();
         ShowData();

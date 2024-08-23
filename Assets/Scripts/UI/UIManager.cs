@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     //Controlling Components
     public SelectionController selectionController;
     public GearPanelController gearPanelController;
+    public DicePanelController dicePanelController;
 
     //UI Components-Panel
     public GameObject BackgroundStorySet;
@@ -39,7 +40,10 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            dicePanelController.RollAllDices();
+        }
     }
 
 
@@ -74,7 +78,9 @@ public class UIManager : MonoBehaviour
                 SelectionSet.SetActive(false);
                 MessagePanel_Bottom.SetActive(false);
                 MainBoardSet.SetActive(true);
-                gearPanelController.InitialPanel();
+                gearPanelController.UpdatePanel();
+                dicePanelController.InitialPanel();
+                dicePanelController.RollAllDices();
                 break;
 
             

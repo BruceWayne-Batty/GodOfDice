@@ -16,12 +16,25 @@ public class DiceController : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     //private int[] diceFaces;
     //private int faceCount;
 
+
+    //Dice to show
+    public DiceData diceToShow;
+    public int currentFace;
+
+
+
     //Path to Images Storage
     public string imagesFolderPath = "Assets/Images/DiceImages/";
 
     //Components To Control
     public Image diceBack;
     public Image diceFace;
+
+
+    //Controlling Parameters
+    public float rollDuration = 1f; // How long the dice should roll.
+    public float rollSpeed = 0.1f; // How fast the dice faces change.
+
 
     void Awake()
     {
@@ -54,7 +67,13 @@ public class DiceController : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     }
 
 
-    // To Initial Dice Manually
+    // To Initial Dice
+    public void InitialDice(DiceData diceData)
+    {
+        diceToShow = diceData;
+        int size = diceToShow.GetSize();
+        InitialDice(size, size);
+    }
     public void InitialDice(int totalFaces, int initialShow)
     {
         //Initial Image Folder Path
@@ -74,6 +93,7 @@ public class DiceController : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
             Debug.Log("diceBackImage Missing");
         }
         ShowDice(initialShow);
+        currentFace = initialShow;
     }
 
     public void ShowDice(int face)
@@ -87,8 +107,31 @@ public class DiceController : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         }
         else
         {
-            Debug.Log("diceFaceImage Missing");
+            Debug.Log("diceFaceImage Missing" + face);
         }
 
     }
+
+    public void RollDice()
+    {
+        StartCoroutine(RollDiceRoutine());
+    }
+
+
+    private IEnumerator RollDiceRoutine()
+    {
+        float elapsedTime = 0f; ;
+        while (elapsedTime < rollDuration)
+        {
+            int randomFaceIndex = Random.Range(0, diceToShow.GetSize());
+            ShowDice(randomFaceIndex+1);
+
+            elapsedTime += rollSpeed;
+            yield return new WaitForSeconds(rollSpeed);
+        }
+        int finalIndex = Random.Range(0, diceToShow.GetSize());
+        ShowDice(finalIndex+1);
+        currentFace = finalIndex + 1;
+    }
+
 }

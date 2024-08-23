@@ -12,6 +12,8 @@ public enum DiceType
     d20 = 20,
 }
 
+
+[System.Serializable]
 public class DiceData
 {
     public int ID;
@@ -28,5 +30,10 @@ public class DiceData
             Faces[i] = i + 1;
         }
 
+    }
+
+    public int GetSize()
+    {
+        return Faces.Length;
     }
 }

@@ -14,6 +14,7 @@ public class GearShowcase : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     //Controllers and Manager
     public GearManager gearManager;
     public UIManager uiManager;
+    public DiceManager diceManager;
 
 
     //Component of the panel
@@ -46,6 +47,7 @@ public class GearShowcase : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         // Get the gearManager
         gearManager = FindObjectOfType<GearManager>();
         uiManager = FindObjectOfType<UIManager>();
+        diceManager = FindObjectOfType<DiceManager>();
     }
 
     public void AssignGear(GearData PickedGear)
@@ -103,10 +105,12 @@ public class GearShowcase : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (gearManager != null)
         {
             gearManager.AddGear(gearData);
+            diceManager.AddDice_Type(gearData.companionDice);
         }
         if (isFirstSelction)
         {
             uiManager.TransitionToState(SceneState.MainGame);
         }
+        
     }
 }
