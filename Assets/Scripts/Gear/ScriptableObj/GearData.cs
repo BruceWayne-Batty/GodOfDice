@@ -39,6 +39,7 @@ public class GearDataInGame
     public float DamageRate;
     public float ShieldRate;
     public string Description;
+    public DiceType companionDice;
 
     // Constructor to initialize GearData from a Gear ScriptableObject
     public GearDataInGame(GearData gearData)
@@ -52,6 +53,7 @@ public class GearDataInGame
         DamageRate = gearData.DamageRate;
         ShieldRate = gearData.ShieldRate;
         Description = gearData.Description;
+        companionDice = gearData.companionDice;
     }
 
     // Method to upgrade the gear (example implementation)
