@@ -8,11 +8,14 @@ public class DiceManager : MonoBehaviour
 
 
     private int maxInDeck;
+    private int newID = 0;
 
 
     public void AddDice_Type(DiceType diceType)
     {
         DiceData newDice = new DiceData(diceType);
+        newDice.ID = newID;
+        newID++;
         diceDeck.Add(newDice); 
     }
 

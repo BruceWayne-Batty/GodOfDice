@@ -20,6 +20,8 @@ public class GearData : ScriptableObject
     public float ShieldRate; // Shield rate (for shields)
     [TextArea] // This attribute makes the description field larger in the inspector
     public string Description; // Description of the gear
+
+    public DiceType companionDice;
 }
 
 

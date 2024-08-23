@@ -15,9 +15,10 @@ MonoBehaviour:
   ID: 1
   gearName: The Shield
   RareLevel: 0
-  ActionCost: 1
+  ActionCost: 2
   EnergySlots: 1
   gearCategory: 1
   DamageRate: 0
   ShieldRate: 1000
   Description: '"The Shield", which can protect you from all incoming attacks.'
+  companionDice: 8

@@ -1477,7 +1477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1041862900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1937,7 +1937,6 @@ GameObject:
   - component: {fileID: 1403962608}
   - component: {fileID: 1403962610}
   - component: {fileID: 1403962609}
-  - component: {fileID: 1403962611}
   m_Layer: 5
   m_Name: ActionCostDice
   m_TagString: Untagged
@@ -2003,21 +2002,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1403962607}
   m_CullTransparentMesh: 1
---- !u!114 &1403962611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1403962607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f962f4fb93264281b0db64c299c1fa8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  imagesFolderPath: Assets/Images/DiceImages/
-  diceBack: {fileID: 1403962609}
-  diceFace: {fileID: 479371064}
 --- !u!1 &1436652790
 GameObject:
   m_ObjectHideFlags: 0
@@ -3169,10 +3153,12 @@ MonoBehaviour:
   gearDescription: {fileID: 452677102}
   energySlotsPrefab: {fileID: 1920534668170247714, guid: 9a842698a8e2a4a2a8ea135f167ae172, type: 3}
   panelTransform: {fileID: 131387887}
-  actionCostDice: {fileID: 1403962611}
   gearImage: {fileID: 1138340318}
+  costDiceBackImage: {fileID: 1403962609}
+  costDiceFaceImage: {fileID: 479371064}
   gearManager: {fileID: 1600527619}
-  imagesFolderPath: Assets/Images/GearImages/
+  GearFolderPath: Assets/Images/GearImages/
+  DiceFolderPath: Assets/Images/DiceImages/4/
 --- !u!1 &2126096570
 GameObject:
   m_ObjectHideFlags: 0

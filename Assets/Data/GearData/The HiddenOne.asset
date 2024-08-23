@@ -15,9 +15,10 @@ MonoBehaviour:
   ID: 0
   gearName: The HiddenOne
   RareLevel: 0
-  ActionCost: 1
+  ActionCost: 3
   EnergySlots: 2
   gearCategory: 2
   DamageRate: 1000
   ShieldRate: 1000
   Description: '"The Hidden One", no one knows where it comes from'
+  companionDice: 20

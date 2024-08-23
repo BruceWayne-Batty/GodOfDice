@@ -11,9 +11,10 @@ public class DiceController : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
 
+    /***Now a specific class DiceData is used for store dice data, this script is only used for controlling UI components and showing dice***/
     //Store Dice Data. For Normal Faces, using corresponding faces. For Unnormal Faces, use int number greater than 20 to represent
-    private int[] diceFaces;
-    private int faceCount;
+    //private int[] diceFaces;
+    //private int faceCount;
 
     //Path to Images Storage
     public string imagesFolderPath = "Assets/Images/DiceImages/";
@@ -56,22 +57,12 @@ public class DiceController : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     // To Initial Dice Manually
     public void InitialDice(int totalFaces, int initialShow)
     {
-        faceCount = totalFaces;
-        diceFaces = new int[faceCount];
-        imagesFolderPath = $"{imagesFolderPath}{faceCount}/";
-        for (int i = 0; i < faceCount; i++)
-        {
-            diceFaces[i] = i + 1;
-        }
-        ShowDice(initialShow);
-    }
+        //Initial Image Folder Path
+        imagesFolderPath = $"{imagesFolderPath}{totalFaces}/";
 
-    public void ShowDice(int face)
-    {
         string backImagePath = $"{imagesFolderPath}base.png";
-        string faceImagePath = $"{imagesFolderPath}{face}.png";
         Sprite diceBackSprite = UIManager.LoadSprite(backImagePath);
-        Sprite diceFaceSprite = UIManager.LoadSprite(faceImagePath);
+
 
         //Loadback Image
         if (diceBackSprite != null)
@@ -82,7 +73,13 @@ public class DiceController : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         {
             Debug.Log("diceBackImage Missing");
         }
+        ShowDice(initialShow);
+    }
 
+    public void ShowDice(int face)
+    {
+        string faceImagePath = $"{imagesFolderPath}{face}.png";
+        Sprite diceFaceSprite = UIManager.LoadSprite(faceImagePath);
         //LoadFace Image
         if (diceFaceSprite != null)
         {

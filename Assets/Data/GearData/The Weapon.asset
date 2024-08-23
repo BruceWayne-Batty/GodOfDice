@@ -21,3 +21,4 @@ MonoBehaviour:
   DamageRate: 1000
   ShieldRate: 0
   Description: '"The Weapon", which can destroy everything'
+  companionDice: 8
