@@ -5,7 +5,6 @@ using UnityEngine;
 public class DiceManager : MonoBehaviour
 {
     public List<DiceData> diceDeck;
-    public int test;
 
     private int maxInDeck;
     private int newID = 0;

@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 4625665008195430399}
   - component: {fileID: 5594250669973933020}
   m_Layer: 5
-  m_Name: EnergyDice
+  m_Name: Dice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

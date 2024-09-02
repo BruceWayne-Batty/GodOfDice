@@ -80,7 +80,6 @@ public class UIManager : MonoBehaviour
                 MainBoardSet.SetActive(true);
                 gearPanelController.UpdatePanel();
                 dicePanelController.InitialPanel();
-                dicePanelController.RollAllDices();
                 break;
 
             
