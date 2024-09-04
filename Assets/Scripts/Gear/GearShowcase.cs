@@ -105,7 +105,7 @@ public class GearShowcase : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (gearManager != null)
         {
             gearManager.AddGear(gearData);
-            diceManager.AddDice_Type(gearData.companionDice);
+            diceManager.AddDice_Type(gearData.companionDice); //Also add companion dice of the gear to the dice manager
         }
         if (isFirstSelction)
         {

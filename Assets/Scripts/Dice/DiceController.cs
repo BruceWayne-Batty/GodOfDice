@@ -4,12 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class DiceController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
-{
 
-    //Dice UI Data
-    private RectTransform rectTransform;
-    private CanvasGroup canvasGroup;
+/***This is the parent class for all dice controller, main functions of dice controlling is implemented in this class***/
+public class DiceController : MonoBehaviour
+{
 
     /***Now a specific class DiceData is used for store dice data, this script is only used for controlling UI components and showing dice***/
     //Store Dice Data. For Normal Faces, using corresponding faces. For Unnormal Faces, use int number greater than 20 to represent
@@ -27,6 +25,7 @@ public class DiceController : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     public string imagesFolderPath = "Assets/Images/DiceImages/";
 
     //Components To Control
+
     public Image diceBack;
     public Image diceFace;
 
@@ -36,35 +35,7 @@ public class DiceController : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     public float rollSpeed = 0.1f; // How fast the dice faces change.
 
 
-    void Awake()
-    {
-        rectTransform = GetComponent<RectTransform>();
-        canvasGroup = GetComponent<CanvasGroup>();
-    }
-
-    /***Drag Functions***/
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        canvasGroup.alpha = 0.6f; // Make the block semi-transparent during drag
-        canvasGroup.blocksRaycasts = false; // Allow the block to pass through other UI elements
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        rectTransform.anchoredPosition += eventData.delta / GetCanvasScaleFactor();
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        canvasGroup.alpha = 1.0f;
-        canvasGroup.blocksRaycasts = true;
-    }
-
-    private float GetCanvasScaleFactor()
-    {
-        Canvas canvas = GetComponentInParent<Canvas>();
-        return canvas.scaleFactor;
-    }
+  
 
 
     // To Initial Dice
@@ -92,8 +63,11 @@ public class DiceController : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         {
             Debug.Log("diceBackImage Missing");
         }
-        ShowDice(initialShow);
+
+        //Set and Show Initial Face
         currentFace = initialShow;
+        ShowDice(currentFace);
+
     }
 
     public void ShowDice(int face)
